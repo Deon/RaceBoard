@@ -113,6 +113,8 @@ app.post('/account/password', passportConf.isAuthenticated, userController.postU
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 app.post('/race/start', raceController.createRace);
+app.post('/race/update', raceController.updateRace);
+app.get('/race', raceController.getRaces);
 
 
 /**
