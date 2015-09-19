@@ -46,9 +46,10 @@ var app = express();
  * Connect to MongoDB.
  */
 if (app.get('env') === 'production'){
-  process.env.MONGOLAB_URI = 'mongodb://raceboard:password@ds051543.mongolab.com:51543/raceboard';
+  secrets.db = 'mongodb://raceboard:password@ds051543.mongolab.com:51543/raceboard';
 }
 mongoose.connect(secrets.db);
+console.log("MongoDB URL:", secrets.db);
 mongoose.connection.on('error', function() {
   console.error('MongoDB Connection Error. Please make sure that MongoDB is running.');
 });
