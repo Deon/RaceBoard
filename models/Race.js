@@ -10,7 +10,7 @@ var raceSchema = new mongoose.Schema({
     time: {type: Date},
     location: {type: String}
   },
-  activation_token:{type: String}
+  activationToken: {type: Schema.Types.ObjectId, turnOn: true}
 });
 
 
