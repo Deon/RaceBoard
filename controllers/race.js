@@ -45,10 +45,20 @@ exports.updateRace = function (req, res) {
 exports.getRaces = function (req, res) {
     console.log(req.query.id);
     if (req.query.id) {
-        return res.send("one param");
+        Race.findById(req.query.id, function(err, race) {
+            console.log(race);
+            if (err) {
+                console.log(err);
+                return res.status(500);
+            }
+
+            console.log(race);
+            return res.send(race);
+        });
+    } else {
+        Race.find({}, function(err, races) {
+            if (err) return res.status(500);
+            return res.send(races);
+        });
     }
-    Race.find({}, function(err, races) {
-        if (err) return res.status(500);
-        return res.send(races);
-    });
 };
