@@ -7,7 +7,7 @@ var raceSchema = new mongoose.Schema({
     location: {type: String}
   },
   end: {
-    time: {type: Date},
+    time: {type: String},
     location: {type: String}
   },
   activationToken: {type: Schema.Types.ObjectId, turnOn: true}

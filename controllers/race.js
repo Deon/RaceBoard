@@ -15,3 +15,40 @@ exports.createRace = function (req, res) {
     return res.send(race._id);
   });
 };
+
+/**
+ * POST /update
+ * Update race with end time, location.
+ */
+exports.updateRace = function (req, res) {
+    Race.findById(req.body.id, function(err, race) {
+        console.log(race);
+        race.end.time = req.body.endTime;
+        race.end.location = req.body.endLocation;
+
+        race.save(function(err) {
+            if (err) {
+                console.log(err);
+                return res.status(500);
+            }
+
+            console.log(race);
+            return res.send(race);
+        });
+    });
+};
+
+/**
+ * GET /race
+ * Return all races.
+ */
+exports.getRaces = function (req, res) {
+    console.log(req.query.id);
+    if (req.query.id) {
+        return res.send("one param");
+    }
+    Race.find({}, function(err, races) {
+        if (err) return res.status(500);
+        return res.send(races);
+    });
+};
