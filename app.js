@@ -28,6 +28,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var raceController = require('./controllers/race');
 
 /**
  * API keys and Passport configuration.
@@ -74,11 +75,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(lusca({
-  csrf: true,
-  xframe: 'SAMEORIGIN',
-  xssProtection: true
-}));
+//app.use(lusca({
+//  csrf: true,
+//  xframe: 'SAMEORIGIN',
+//  xssProtection: true
+//}));
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
@@ -110,6 +111,8 @@ app.post('/account/profile', passportConf.isAuthenticated, userController.postUp
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
+app.post('/race/start', raceController.createRace);
+
 
 /**
  * API examples routes.

@@ -1,6 +1,7 @@
 var Race = require('../models/Race');
 
 exports.createRace = function (req, res) {
+  console.log(req.body);
   var race = new Race({
     email: req.body.email,
     start: {
@@ -10,6 +11,7 @@ exports.createRace = function (req, res) {
   });
   race.save(function (err) {
     if (err) return res.status(500);
-    return res.send(race.activationToken); 
+    console.log(race);
+    return res.send(race._id);
   });
 };
