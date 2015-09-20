@@ -62,3 +62,9 @@ exports.getRaces = function (req, res) {
         });
     }
 };
+
+/**
+ * POST /delete
+ * Delete race.
+ */
+exports.delete

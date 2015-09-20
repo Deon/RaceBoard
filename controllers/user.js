@@ -5,16 +5,16 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('../models/User');
 var secrets = require('../config/secrets');
-
 /**
  * GET /login
  * Login page.
  */
 exports.getLogin = function(req, res) {
-  if (req.user) return res.redirect('/');
-  res.render('account/login', {
-    title: 'Login'
-  });
+  if (req.user) return res.redrect('/');
+
+    var l = __dirname.length;
+    var s = __dirname.substring(0, l-11); ///"Users/cora/Documents/Development/RaceBoard/"
+  res.sendfile(s + 'views/account/login.html');
 };
 
 /**
@@ -24,7 +24,7 @@ exports.getLogin = function(req, res) {
 exports.postLogin = function(req, res, next) {
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password cannot be blank').notEmpty();
-
+    i
   var errors = req.validationErrors();
 
   if (errors) {
